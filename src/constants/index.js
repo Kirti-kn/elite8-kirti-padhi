@@ -16,10 +16,10 @@ Let’s just say: I code smart, adapt fast, and never stop learning.`;
 
 export const EXPERIENCES = [
   {
-    year: "Jan 2025 - Present",
+    year: "Jan 2025 - May 2025",
     role: " Full Stack Developer Intern",
     company: " BigBinary Solutions Pvt. Ltd.",
-    description: `Working as a Full Stack Developer Intern, contributing to both frontend and backend aspects of projects. Responsibilities included utilizing modern web technologies for interface development and server-side logic implementation.`,
+    description: `Worked as a Full Stack Developer Intern, contributed to both frontend and backend aspects of projects. Responsibilities included utilizing modern web technologies for interface development and server-side logic implementation.`,
     technologies: ["Javascript", "React.js", "Ruby on Rails", "PostgreSql", "SqLite3", "TailwindCSS"],
   },
   {
@@ -69,8 +69,3 @@ export const PROJECTS = [
     technologies: ["HTML", "CSS", "Vue.js", "Express", "mySQL"],
   },
 ];
-
-export const CONTACT = {
-  phoneNo: "+12 4555 666 00 ",
-  email: "kirtipadhi06@gmail.com",
-};
