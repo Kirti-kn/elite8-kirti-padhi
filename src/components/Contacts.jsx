@@ -1,36 +1,40 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import Modal from "./Modal";
-import { Button } from "@mui/material";
+import { Button, Alert, Snackbar } from "@mui/material";
 import { IoMdSend } from "react-icons/io";
+import SendIcon from '@mui/icons-material/Send';
 
 const Contacts = () => {
   const [loading, setLoading] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [alert, setAlert] = useState();
   const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setLoading(true);
     // "service_gd76c4p",
     //   "template_evvugt9",
     //   form.current,
     //   "H5zWBIzTAsgBgY4HK"
 
     emailjs.sendForm(
-      "givefj",
-      "temp",
+      process.env.SERVICE_ID,
+      process.env.TEMPLATE_ID,
       form.current,
-      "gibberishh"
+      process.env.PUBLIC_KEY
     ).then(
       () => {
-        alert("✅ Message sent successfully!");
+        <Alert severity="success">Message sent successfully</Alert>
+        setAlert({ severity: "success", message: "Message sent successfully" })
         form.current.reset();
       },
       (error) => {
-        alert("❌ Failed to send message. Try again.");
+        <Alert severity="error">Failed to send message. Try again.</Alert>
+        setAlert({ severity: "error", message: "Failed to send message. Try again." })
         console.error(error);
-      }
-    );
+      },
+    ).finally(() => { setLoading(false) });
   };
 
   return (
@@ -70,14 +74,25 @@ const Contacts = () => {
               required
             />
           </div>
-          <div className="text-center" endIcon={<IoMdSend />}>
-            <Button loading={loading} type="submit" variant="contained">
+          <div className="text-center">
+            <Button loading={loading} type="submit" variant="contained" endIcon={<SendIcon />}>
               Send
             </Button>
           </div>
         </form>
       </div>
-      {/* <Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen}/> */}
+      <Snackbar
+        open={!!alert}
+        autoHideDuration={4000}
+        onClose={()=>{
+          setAlert(null);
+        }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert severity={alert?.severity} variant="standard" onClose={() => setAlert(null)}>
+          {alert?.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };
