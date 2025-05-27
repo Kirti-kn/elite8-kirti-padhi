@@ -11,7 +11,6 @@ export default function Experience() {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      {/* Section Title */}
       <motion.h2
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -50 }}
@@ -21,10 +20,8 @@ export default function Experience() {
         Experience
       </motion.h2>
 
-      {/* Parallax Content */}
       <Parallax pages={PAGES} className="w-full h-full">
 
-        {/* Experience Slides */}
         {EXPERIENCES.map((exp, i) => (
           <ParallaxLayer key={i} offset={i} speed={0.5} className="flex items-center justify-center z-10">
             <div className={`${trackWidth} text-center px-6 text-white`}>  
@@ -40,7 +37,6 @@ export default function Experience() {
           </ParallaxLayer>
         ))}
 
-        {/* End Slide */}
         <ParallaxLayer offset={EXP_COUNT} speed={0} className="flex items-center justify-center z-10">
           <div className={`${trackWidth} text-center px-6 text-gray-300 text-2xl font-semibold`}>  
             On the way to add more Experience
@@ -48,13 +44,10 @@ export default function Experience() {
         </ParallaxLayer>
       </Parallax>
 
-      {/* Overlay: dark blur with clear center rectangle */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Top */}
         <div className="absolute inset-x-0 top-0 bottom-[calc(70%+45px)] md:bottom-[calc(50%+120px)] backdrop-blur-sm flex justify-center items-end">
             <MdWork size={40} className='text-cyan-400' />
         </div>
-        {/* Bottom */}
         <div className="absolute inset-x-0 top-[calc(70%+45px)] md:top-[calc(50%+120px)] bottom-0 backdrop-blur-sm" />
 
       </div>

@@ -1,4 +1,3 @@
-import React from 'react'
 import { RiReactjsLine } from 'react-icons/ri'
 import { AiOutlinePython } from 'react-icons/ai'
 import { TbBrandJavascript } from "react-icons/tb";
@@ -25,7 +24,7 @@ const iconVariants = duration => ({
 const Technologies = () => {
 
   return (
-    <div className='borber-b border-neutral-800 pb-16'>
+    <div className='borber-b border-white pb-16'>
       <motion.h2 
       whileInView={{ opacity: 1, y: 0}}
       initial={{ opacity: 0, y: -100}}
@@ -40,63 +39,63 @@ const Technologies = () => {
         variants={iconVariants(2.5)}
         initial="initial"
         animate="animate"
-        className='rounded-2xl border-4 border-neutral-800 p-4'>
-           <AiOutlinePython className='text-7xl text-yellow-700'/>
+        className='rounded-2xl border-4 border-white p-4'>
+           <AiOutlinePython className='text-7xl text-yellow-600'/>
         </motion.div>
         <motion.div 
         variants={iconVariants(2.5)}
         initial="initial"
         animate="animate"
-        className='rounded-2xl border-4 border-neutral-800 p-4'>
+        className='rounded-2xl border-4 border-white p-4'>
            <RiReactjsLine className='text-7xl text-cyan-400'/>
         </motion.div>
         <motion.div 
         variants={iconVariants(2.5)}
         initial="initial"
         animate="animate"
-        className='rounded-2xl border-4 border-neutral-800 p-4'>
+        className='rounded-2xl border-4 border-white p-4'>
            <TbBrandJavascript className='text-7xl text-yellow-400'/>
         </motion.div>
         <motion.div 
         variants={iconVariants(2.5)}
         initial="initial"
         animate="animate"
-        className='rounded-2xl border-4 border-neutral-800 p-4'>
-           <SiMysql className='text-7xl text-blue-800'/>
+        className='rounded-2xl border-4 border-white p-4'>
+           <SiMysql className='text-7xl text-blue-600'/>
         </motion.div>
         <motion.div 
         variants={iconVariants(2.5)}
         initial="initial"
         animate="animate"
-        className='rounded-2xl border-4 border-neutral-800 p-4'>
-           <DiDjango className='text-7xl text-green-700'/>
+        className='rounded-2xl border-4 border-white p-4'>
+           <DiDjango className='text-7xl text-green-500'/>
         </motion.div>
         <motion.div 
         variants={iconVariants(2.5)}
         initial="initial"
         animate="animate"
-        className='rounded-2xl border-4 border-neutral-800 p-4'>
+        className='rounded-2xl border-4 border-white p-4'>
            <FaGitSquare className='text-7xl text-white'/>
         </motion.div>
         <motion.div 
         variants={iconVariants(2.5)}
         initial="initial"
         animate="animate"
-        className='rounded-2xl border-4 border-neutral-800 p-4'>
-           <DiRuby className='text-7xl text-red-900'/>
+        className='rounded-2xl border-4 border-white p-4'>
+           <DiRuby className='text-7xl text-red-800'/>
         </motion.div>
         <motion.div 
         variants={iconVariants(2.5)}
         initial="initial"
         animate="animate"
-        className='rounded-2xl border-4 border-neutral-800 p-4'>
+        className='rounded-2xl border-4 border-white p-4'>
            <SiRubyonrails className='text-7xl text-red-600'/>
         </motion.div>
         <motion.div 
         variants={iconVariants(2.5)}
         initial="initial"
         animate="animate"
-        className='rounded-2xl border-4 border-neutral-800 p-4'>
+        className='rounded-2xl border-4 border-white p-4'>
            <SiTailwindcss className='text-7xl text-blue-400'/>
         </motion.div>
       </motion.div>

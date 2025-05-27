@@ -1,8 +1,6 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import Modal from "./Modal";
 import { Button, Alert, Snackbar } from "@mui/material";
-import { IoMdSend } from "react-icons/io";
 import SendIcon from '@mui/icons-material/Send';
 
 const Contacts = () => {
@@ -13,10 +11,6 @@ const Contacts = () => {
   const sendEmail = (e) => {
     e.preventDefault();
     setLoading(true);
-    // "service_gd76c4p",
-    //   "template_evvugt9",
-    //   form.current,
-    //   "H5zWBIzTAsgBgY4HK"
 
     emailjs.sendForm(
       process.env.SERVICE_ID,
