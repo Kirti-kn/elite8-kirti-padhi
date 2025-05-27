@@ -1,56 +1,91 @@
-import { HERO_CONTENT } from "../constants";
-import { motion } from 'framer-motion';
-import mainProfilePic from "../assets/mainProfilePic.png";
+import { useEffect, useState } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import logoSrc from '../assets/K.svg';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import HeroDetails from './HeroDetails';
 
-const container = delay => ({
-    hidden: { x: -100, opacity: 0},
-    visible: {
-        x: 0,
-        opacity: 1,
-        transition: { duration: 1, delay: delay + 1.2},
+export default function Hero() {
+  const logoControls = useAnimation();
+  const nameControls = useAnimation();
+  const [stage, setStage] = useState('intro');
+  const [progress, setProgress] = useState(0);
+
+  const logoVariants = {
+    hidden: { opacity: 0, scale: 0, x: 0 },
+    enter: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
+    drift: { x: -30, transition: { duration: 0.4, ease: 'easeOut' } },
+  };
+  const nameVariants = {
+    hidden: { opacity: 0, scale: 0, x: -10 },
+    enter: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
+    drift: { x: 30, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
+
+  useEffect(() => {
+    async function runSequence() {
+      await Promise.all([
+        logoControls.start('enter'),
+        nameControls.start('enter'),
+      ]);
+      await Promise.all([
+        logoControls.start('drift'),
+        nameControls.start('drift'),
+      ]);
+      setStage('loading');
+      let value = 0;
+      const interval = setInterval(() => {
+        value += 1;
+        setProgress(value);
+        if (value >= 100) {
+          clearInterval(interval);
+          setStage('show');
+        }
+      }, 25);
     }
-});
+    runSequence();
+  }, [logoControls, nameControls]);
 
-const Hero = () => {
-    return (
-        <div className='border-b border-neutral-900 pt-4 lg:mb-35 mt-10 pb-8'>
-            <div className='flex flex-wrap justify-evenly px-4'>
-                <div className='w-full md:w-3/5 lg:w-2/5 p-8'>
-                    <div className='flex justify-center'>
-                        <motion.img src={mainProfilePic} alt="Kirti Padhi profile picture"
-                        initial={{ y:-100,opacity: 0}}
-                        animate={{ y: 0, opacity: 1}}
-                        transition={{ duration: 1, delay: 0}}
-                        className='rounded-lg'
-                        />
-                    </div>
-                </div>
-                <div className='w-full lg:w-1/2 px-4'>
-                    <div className='flex flex-col items-center lg:items-start'>
-                        <motion.h1 className='pb-16 text-6xl font-thin tracking-tight lg:mt-16 lg:text-8xl'
-                        variants={container(0)}
-                        initial="hidden"
-                        animate="visible"
-                        >
-                            Kirti Padhi
-                        </motion.h1>
-                        <motion.span className='bg-gradient-to-r from-pink-300 via-slate-500 to-purple-500 bg-clip-text text-3xl tracking-tight text-transparent' 
-                        variants={container(0.5)}
-                        initial="hidden"
-                        animate="visible"
-                        >
-                            Full Stack Developer
-                        </motion.span>
-                        <motion.p 
-                        className='my-2 max-w-xl py-6 font-light tracking-tighter text-justify md:text-left'
-                        variants={container(1)}
-                        initial="hidden"
-                        animate="visible">{HERO_CONTENT}</motion.p>
-                    </div>
-                </div>
+  return (
+    <div className="relative w-full flex items-center justify-center overflow-auto ">
+      {stage !== 'show' && (
+        <div className="relative flex h-screen items-center justify-center">
+          {stage === 'loading' && (
+            <div className="absolute w-64 h-64">
+              <CircularProgressbar
+                value={progress}
+                strokeWidth={4}
+                styles={buildStyles({
+                  pathColor: '#22d3ee',
+                  trailColor: 'rgba(0,0,0,0)',
+                })}
+              />
             </div>
-        </div>
-    )
-}
+          )}
 
-export default Hero
+          <motion.img
+            src={logoSrc}
+            alt="Logo"
+            className="w-24 h-24 relative z-20"
+            initial="hidden"
+            animate={logoControls}
+            variants={logoVariants}
+          />
+
+          <motion.h1
+            className="text-4xl md:text-5xl text-white absolute z-10"
+            initial="hidden"
+            animate={nameControls}
+            variants={nameVariants}
+          >
+            irti
+          </motion.h1>
+        </div>
+      )}
+
+      {stage === 'show' && (
+        <HeroDetails />
+      )}
+    </div>
+  );
+}
