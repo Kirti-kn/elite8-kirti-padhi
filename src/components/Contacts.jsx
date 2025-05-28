@@ -13,18 +13,16 @@ const Contacts = () => {
     setLoading(true);
 
     emailjs.sendForm(
-      process.env.VITE_SERVICE_ID,
-      process.env.VITE_TEMPLATE_ID,
+      import.meta.env.VITE_SERVICE_ID,
+      import.meta.env.VITE_TEMPLATE_ID,
       form.current,
-      process.env.VITE_PUBLIC_KEY
+      import.meta.env.VITE_PUBLIC_KEY
     ).then(
       () => {
-        <Alert severity="success">Message sent successfully</Alert>
         setAlert({ severity: "success", message: "Message sent successfully" })
         form.current.reset();
       },
       (error) => {
-        <Alert severity="error">Failed to send message. Try again.</Alert>
         setAlert({ severity: "error", message: "Failed to send message. Try again." })
         console.error(error);
       },
@@ -78,7 +76,7 @@ const Contacts = () => {
       <Snackbar
         open={!!alert}
         autoHideDuration={4000}
-        onClose={()=>{
+        onClose={() => {
           setAlert(null);
         }}
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
