@@ -13,10 +13,10 @@ const Contacts = () => {
     setLoading(true);
 
     emailjs.sendForm(
-      process.env.SERVICE_ID,
-      process.env.TEMPLATE_ID,
+      process.env.VITE_SERVICE_ID,
+      process.env.VITE_TEMPLATE_ID,
       form.current,
-      process.env.PUBLIC_KEY
+      process.env.VITE_PUBLIC_KEY
     ).then(
       () => {
         <Alert severity="success">Message sent successfully</Alert>

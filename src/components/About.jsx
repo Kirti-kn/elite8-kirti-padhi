@@ -7,7 +7,8 @@ import 'swiper/css/navigation';
 import profilePicLaptop from "../assets/profilePicLaptop.png";
 import { ABOUT_TEXT } from '../constants';
 import Technologies from './Technologies';
-import { FaGithub, FaLinkedin, FaTelegramPlane, FaTwitter } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTelegramPlane } from 'react-icons/fa';
+import { SiGmail } from "react-icons/si";
 import { motion } from 'framer-motion';
 
 const creativeEffect = {
@@ -79,6 +80,8 @@ export default function About() {
                 <a href="https://github.com/Kirti-kn" target="_blank" rel="noopener noreferrer"><FaGithub /></a>
                 <a href="https://www.linkedin.com/in/kirti-padhi-b83614245/" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
                 <a href="https://t.me/Kirti_padhi" target="_blank" rel="noopener noreferrer"><FaTelegramPlane /></a>
+                <a href="mailto:kirtipadhi06@gmail.com" target="_blank" rel="noopener noreferrer"><SiGmail /></a>
+
               </div>
             </div>
           </SwiperSlide>
